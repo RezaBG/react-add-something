@@ -1,7 +1,14 @@
-import * as React from "react";
-import Products from "../Products.js";
-import "./style.css";
+import React from "react";
 
-export default function App() {
-  return <Products />;
-}
+const Main = () => {
+  return (
+    <main>
+      <h1 className="main--title">Fun facts about react</h1>
+      <ul>
+        <li>Was first realeased in 2023</li>
+      </ul>
+    </main>
+  );
+};
+
+export default Main;
