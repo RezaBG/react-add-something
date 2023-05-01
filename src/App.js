@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 
-import CourseGoalList from "./CourseGoals/CourseGoalList/CourseGoalList";
-import CourseInput from "./CourseGoals/CourseInput/CourseInput";
+import CourseGoalList from "./components/CourseGoals/CourseGoalList/CourseGoalList";
+import CourseInput from "./components/CourseGoals/CourseInput/CourseInput";
 import "./App.css";
 
 const App = () => {
-  const [courseGoals, setCouseGoals] = useState([
+  const [courseGoals, setCourseGoals] = useState([
     { text: "Do all exercises!", id: "g1" },
     { text: "Finish the course!", id: "g2" },
   ]);
 
   const addGoalHandler = (enteredText) => {
-    setCouseGoals((prevGoals) => {
+    setCourseGoals((prevGoals) => {
       const updatedGoals = [...prevGoals];
       updatedGoals.unshift({ text: enteredText, id: Math.random().toString() });
       return updatedGoals;
@@ -19,26 +19,31 @@ const App = () => {
   };
 
   const deleteItemHandler = (goalId) => {
-    setCouseGoals((prevGoals) => {
+    setCourseGoals((prevGoals) => {
       const updatedGoals = prevGoals.filter((goal) => goal.id !== goalId);
       return updatedGoals;
     });
   };
+
   let content = (
-    <p style={{ textAlign: "center" }}>No goals found. Maybe and one?</p>
+    <p style={{ textAlign: "center" }}>No goals found. Maybe add one?</p>
   );
 
   if (courseGoals.length > 0) {
     content = (
-      <CourseGoalList item={courseGoals} onDeleteItem={deleteItemHandler} />
+      <CourseGoalList items={courseGoals} onDeleteItem={deleteItemHandler} />
     );
   }
+
   return (
     <div>
-      <section>
+      <section id="goal-form">
         <CourseInput onAddGoal={addGoalHandler} />
       </section>
-      <section id="goals">{content}</section>
+      <section id="goals">
+        {content}
+        {}
+      </section>
     </div>
   );
 };
